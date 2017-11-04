@@ -8,16 +8,12 @@ let twitterKeys = {
 }
 
 let spotifyKeys = {
-  client_id: "d12c8457daae406b9148b4dfa362485a",
-  client_secret: "b3214bc0f5ad4f7cb0cc2107fc62416b"
+  id: "d12c8457daae406b9148b4dfa362485a",
+  secret: "b3214bc0f5ad4f7cb0cc2107fc62416b"
 }
 
 let twitKey = twitterKeys.consumer_key;
-//console.log(twitKey);
-
 let spotKey = spotifyKeys.client_id;
-//console.log(spotKey);
-
 
 module.exports = {
   twitterKeys: twitterKeys,
