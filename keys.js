@@ -1,5 +1,5 @@
 console.log('this is loaded');
-require('dotenv').config()
+require('dotenv').config();
 
 let twitterKeys = {
   consumer_key: process.env.consumer_key,
