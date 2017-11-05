@@ -1,15 +1,16 @@
 console.log('this is loaded');
+require('dotenv').config()
 
 let twitterKeys = {
-  consumer_key: '4iKlbq6G6nr3zZTF2tIVZLAwS',
-  consumer_secret: 'lS29Yu5wRqIeFYc5EWAobq9tAUWzofqLIqTP2MPwglA3cQ9nMu',
-  access_token_key: '925167641995698178-h7zeDQSiuGg6HlySo85Uq9lJNDdpcKH',
-  access_token_secret: 'riR1AXgUusrYGGLDnyAWB4oIXPhQCDhMF7GBJsf0NSLme'
+  consumer_key: process.env.consumer_key,
+  consumer_secret: process.env.consumer_secret,
+  access_token_key: process.env.access_token_key,
+  access_token_secret: process.env.access_token_secret
 }
 
 let spotifyKeys = {
-  id: "d12c8457daae406b9148b4dfa362485a",
-  secret: "b3214bc0f5ad4f7cb0cc2107fc62416b"
+  id: process.env.id,
+  secret: process.env.secret
 }
 
 let twitKey = twitterKeys.consumer_key;
