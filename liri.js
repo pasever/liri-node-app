@@ -8,6 +8,8 @@ var searchRequest = process.argv[3];
 var spotify = new Spotify(keys.spotifyKeys);
 var omdbKey = keys.omdbKey.key;
 var twitter = new Twitter(keys.twitterKeys);
+var moment = require('moment');
+//moment().format('DD.MM.YYYY');
 
 switch (action) {
 
@@ -101,10 +103,17 @@ function movieFunction(req) {
 function tweetFunction() {
   twitter.get('statuses/user_timeline', function(error, tweets, response) {
     if (!error) {
+
       var max = 20;
       console.log("###############################################");
       for (i = 0; i < tweets.length; i++) {
         console.log((i + 1) + ". " + tweets[i].text);
+        console.log(`Created at: ${tweets[i].created_at}`);
+        console.log(`Created at: ${tweets[i].created_at.match(/x/)[1]}`);
+        //var tweetTime = moment(tweets[i].created_at, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').format('MM/DD/YYYY hh:mm A');
+        //console.log(`${tweetTime}`);
+        //console.log(moment(tweets[i].created_at));
+        //console.log(tweets);
         if (i > max) {
           break;
         }
