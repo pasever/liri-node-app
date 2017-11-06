@@ -1,4 +1,3 @@
-console.log('this is loaded');
 require('dotenv').config();
 
 let twitterKeys = {
@@ -13,10 +12,16 @@ let spotifyKeys = {
   secret: process.env.secret
 }
 
-let twitKey = twitterKeys.consumer_key;
-let spotKey = spotifyKeys.client_id;
+let omdbKey = {
+  key: process.env.key
+}
+
+//let twitKey = twitterKeys.consumer_key;
+//let spotKey = spotifyKeys.client_id;
+// let omdbKey = omdbKeys.omdb;
 
 module.exports = {
   twitterKeys: twitterKeys,
-  spotifyKeys: spotifyKeys
+  spotifyKeys: spotifyKeys,
+  omdbKey: omdbKey
 }

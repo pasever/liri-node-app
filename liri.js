@@ -3,11 +3,13 @@ var Spotify = require('node-spotify-api');
 var request = require('request');
 var keys = require("./keys.js");
 var fs = require("fs");
-var input = process.argv[2];
+var action = process.argv[2];
 var searchRequest = process.argv[3];
 var spotify = new Spotify(keys.spotifyKeys);
+var omdbKey = keys.omdbKey.key;
+//console.log(omdbKey);
 
-switch (input) {
+switch (action) {
 
   case "spotify-this-song":
   case "spotify":
@@ -21,13 +23,17 @@ switch (input) {
 
   case "my-tweets":
   case "tweet":
-
     console.log("It tweeted!");
     break;
 
   case "movie-this":
   case "movie":
-    console.log("It movied!");
+    if (searchRequest == null) {
+      let empty = "Mr Nobody";
+      movieFunction(empty);
+    } else {
+      movieFunction(searchRequest);
+    }
     break;
 
   case "do-what-it-says":
@@ -69,9 +75,34 @@ function spotifyFunction(req) {
   });
 }
 
+function movieFunction(req) {
+
+  var url = "http://www.omdbapi.com/?t=" + req + "&apikey=" + omdbKey;
+
+  request(url, {
+    json: true
+  }, (err, res, data) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("###############################################");
+    console.log("Title: " + data.Title);
+    console.log("Year: " + data.Year);
+    console.log("IMDB Rating: " + data.imdbRating);
+    //console.log("Rotten Tomatoes Rating: " + data.Ratings[0]);
+    console.log("Country: " + data.Country);
+    console.log("Language: " + data.Language);
+    console.log("Plot: " + data.Plot);
+    console.log("Actors: " + data.Actors);
+    console.log("###############################################");
+    //console.log(data);
+  });
+
+}
+
 // twitterKeys.get('favorites/list', function(error, tweets, response) {
 //   if (error) throw error;
-//   console.log(tweets); // The favorites.
-//   console.log(response); // Raw response object.
+//   console.log(tweets);  The favorites.
+//   console.log(response);  Raw response object.
 // });
 //console.log(random.txt);
