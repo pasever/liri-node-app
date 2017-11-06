@@ -1,4 +1,4 @@
-var twitter = require('twitter');
+var Twitter = require('twitter');
 var Spotify = require('node-spotify-api');
 var request = require('request');
 var keys = require("./keys.js");
@@ -7,7 +7,7 @@ var action = process.argv[2];
 var searchRequest = process.argv[3];
 var spotify = new Spotify(keys.spotifyKeys);
 var omdbKey = keys.omdbKey.key;
-//console.log(omdbKey);
+var twitter = new Twitter(keys.twitterKeys);
 
 switch (action) {
 
@@ -23,7 +23,7 @@ switch (action) {
 
   case "my-tweets":
   case "tweet":
-    console.log("It tweeted!");
+    tweetFunction();
     break;
 
   case "movie-this":
@@ -46,12 +46,10 @@ switch (action) {
       var randomText = dataArr[1];
       spotifyFunction(randomText);
     });
-    console.log("Option 4");
     break;
 
   default:
-    console.log("Enter the info you want to pull...")
-
+    console.log("Enter the info you want to pull...");
 }
 
 function spotifyFunction(req) {
@@ -100,9 +98,21 @@ function movieFunction(req) {
 
 }
 
-// twitterKeys.get('favorites/list', function(error, tweets, response) {
-//   if (error) throw error;
-//   console.log(tweets);  The favorites.
-//   console.log(response);  Raw response object.
-// });
-//console.log(random.txt);
+function tweetFunction() {
+  twitter.get('statuses/user_timeline', function(error, tweets, response) {
+    if (!error) {
+      var max = 20;
+      console.log("###############################################");
+      for (i = 0; i < tweets.length; i++) {
+        console.log((i + 1) + ". " + tweets[i].text);
+        if (i > max) {
+          break;
+        }
+
+      }
+      console.log("###############################################");
+    } else if (error) {
+      console.log(error);
+    }
+  });
+}
