@@ -8,17 +8,13 @@ let twitterKeys = {
 }
 
 let spotifyKeys = {
-  id: process.env.id,
-  secret: process.env.secret
+  id: process.env.ID,
+  secret: process.env.SECRET
 }
 
 let omdbKey = {
-  key: process.env.key
-}
-
-//let twitKey = twitterKeys.consumer_key;
-//let spotKey = spotifyKeys.client_id;
-// let omdbKey = omdbKeys.omdb;
+  key: process.env.KEY
+} 
 
 module.exports = {
   twitterKeys: twitterKeys,

@@ -9,7 +9,6 @@ var spotify = new Spotify(keys.spotifyKeys);
 var omdbKey = keys.omdbKey.key;
 var twitter = new Twitter(keys.twitterKeys);
 var moment = require('moment');
-//moment().format('DD.MM.YYYY');
 
 switch (action) {
 
@@ -51,7 +50,8 @@ switch (action) {
     break;
 
   default:
-    console.log("Enter the info you want to pull...");
+    console.log("Error occurred while processing your request...");
+    console.log("Please, enter the information you want to pull...");
 }
 
 function spotifyFunction(req) {
@@ -70,8 +70,6 @@ function spotifyFunction(req) {
     console.log("Preview: " + data.tracks.items[0].preview_url);
     console.log("Album: " + data.tracks.items[0].album.name);
     console.log("###############################################");
-    //console.log(JSON.stringify(data.tracks.items, null, 2));
-
   });
 }
 
@@ -95,23 +93,20 @@ function movieFunction(req) {
     console.log("Plot: " + data.Plot);
     console.log("Actors: " + data.Actors);
     console.log("###############################################");
-    //console.log(data);
   });
 
 }
 
 function tweetFunction() {
-  twitter.get('statuses/user_timeline', { count: 20 }, function(error, tweets, response) {
+  twitter.get('statuses/user_timeline', {
+    count: 20
+  }, function(error, tweets, response) {
     if (!error) {
       console.log("###############################################");
       for (i = 0; i < tweets.length; i++) {
         console.log((i + 1) + ". " + tweets[i].text);
-        console.log(`Created at: ${tweets[i].created_at}`);
-        //console.log(`Created at: ${tweets[i].created_at.match(/x/)}`);
+        console.log(`Tweet created on: ${tweets[i].created_at.substring(0, 19)}`);
         //let tweetTime = moment(tweets[i].created_at, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').format('MM/DD/YYYY hh:mm A');
-        //console.log(`${tweetTime}`);
-        //console.log(tweets);
-
       }
       console.log("###############################################");
     } else if (error) {
