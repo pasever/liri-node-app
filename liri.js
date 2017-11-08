@@ -10,6 +10,7 @@ var omdbKey = keys.omdbKey.key;
 var twitter = new Twitter(keys.twitterKeys);
 var moment = require('moment');
 
+
 switch (action) {
 
   case "spotify-this-song":
@@ -19,6 +20,7 @@ switch (action) {
       spotifyFunction(empty);
     } else {
       spotifyFunction(searchRequest);
+      userLogs(action, searchRequest);
     }
     break;
 
@@ -26,6 +28,7 @@ switch (action) {
   case "my-tweets":
   case "tweet":
     tweetFunction();
+
     break;
 
   case "movie-this":
@@ -33,8 +36,10 @@ switch (action) {
     if (searchRequest == null) {
       let empty = "Mr. Nobody";
       movieFunction(empty);
+      userLogs(action, searchRequest);
     } else {
       movieFunction(searchRequest);
+      userLogs(action, searchRequest);
     }
     break;
 
@@ -47,6 +52,7 @@ switch (action) {
       var dataArr = data.split(",");
       var randomText = dataArr[1];
       spotifyFunction(randomText);
+      userLogs(action, searchRequest);
     });
     break;
 
@@ -88,7 +94,7 @@ function movieFunction(req) {
     console.log("Title: " + data.Title);
     console.log("Year: " + data.Year);
     console.log("IMDB Rating: " + data.imdbRating);
-    console.log("Rotten Tomatoes Rating: " + data.Ratings[1].Value);
+    //console.log("Rotten Tomatoes Rating: " + data.Ratings[1].Value);
     console.log("Country: " + data.Country);
     console.log("Language: " + data.Language);
     console.log("Plot: " + data.Plot);
@@ -114,4 +120,21 @@ function tweetFunction() {
       console.log(error);
     }
   });
+}
+
+
+function userLogs(a, b) {
+
+  let something = `${a} ${b}` + "\n";
+
+  fs.appendFile('logs.txt', something, function(err) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      console.log("Content Added!");
+    }
+
+  });
+
 }

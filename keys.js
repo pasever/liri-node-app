@@ -14,7 +14,7 @@ let spotifyKeys = {
 
 let omdbKey = {
   key: process.env.KEY
-} 
+}
 
 module.exports = {
   twitterKeys: twitterKeys,

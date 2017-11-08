@@ -4,17 +4,15 @@ LIRI Node Application
 
 A node application to accept command line requests and bring back information from different APIs
 
-Requirements:
+### Requirements:
 
 To run this application you will need Node.JS and NPM installed on your computer.
 
-Installing:
 
-Clone the project:
-
-* go to this link and clone the path to this project: https://github.com/pasever/liri-node-app
+###Installing:
 
 * cd in your terminal to the folder you want to clone your file to  
+* clone the project
 * inside that folder run the following command:
 
   - git clone [Clone with HTTPS path goes here]
@@ -23,7 +21,7 @@ Clone the project:
 
 - npm install
 
-Possible commands:
+###Possible commands:
 
 Grab tweets from Twitter account: node liri.js tweet
 
@@ -35,14 +33,14 @@ Run any commands you have run in the past: node liri.js do
 
 All commands will be logged to the random.txt file.
 
-Built With:
+###Built With:
 
 Node.JS
 Twitter API
 Spotify API
 OMDb API
 
-Author:
+###Author:
 
 Evgheni Pascalov
 
@@ -51,7 +49,7 @@ Evgheni Pascalov
 MIT License
 
 
-Additionally:
+###Additionally:
 
 please reach out to me if need help with setting up the application
 or adding the .ENV file for more security
