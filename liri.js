@@ -22,6 +22,7 @@ switch (action) {
     }
     break;
 
+
   case "my-tweets":
   case "tweet":
     tweetFunction();
@@ -30,7 +31,7 @@ switch (action) {
   case "movie-this":
   case "movie":
     if (searchRequest == null) {
-      let empty = "Mr Nobody";
+      let empty = "Mr. Nobody";
       movieFunction(empty);
     } else {
       movieFunction(searchRequest);
@@ -87,7 +88,7 @@ function movieFunction(req) {
     console.log("Title: " + data.Title);
     console.log("Year: " + data.Year);
     console.log("IMDB Rating: " + data.imdbRating);
-    //console.log("Rotten Tomatoes Rating: " + data.Ratings[0]);
+    console.log("Rotten Tomatoes Rating: " + data.Ratings[1].Value);
     console.log("Country: " + data.Country);
     console.log("Language: " + data.Language);
     console.log("Plot: " + data.Plot);
@@ -105,7 +106,7 @@ function tweetFunction() {
       console.log("###############################################");
       for (i = 0; i < tweets.length; i++) {
         console.log((i + 1) + ". " + tweets[i].text);
-        console.log(`Tweet created on: ${tweets[i].created_at.substring(0, 19)}`);
+        console.log(`Tweet created: ${tweets[i].created_at.substring(4, 19)}`);
         //let tweetTime = moment(tweets[i].created_at, 'dd MMM DD HH:mm:ss ZZ YYYY', 'en').format('MM/DD/YYYY hh:mm A');
       }
       console.log("###############################################");
